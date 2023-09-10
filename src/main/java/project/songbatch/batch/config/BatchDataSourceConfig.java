@@ -1,11 +1,8 @@
 package project.songbatch.batch.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import java.io.IOException;
 import javax.sql.DataSource;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -37,16 +34,10 @@ public class BatchDataSourceConfig {
 
     @Primary
     @Bean
-    public SqlSessionFactoryBean batchSqlSessionFactory(DataSource dataSource) throws IOException {
+    public SqlSessionFactoryBean batchSqlSessionFactory(DataSource dataSource) {
         SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
         factoryBean.setDataSource(dataSource);
         return factoryBean;
-    }
-
-    @Primary
-    @Bean
-    public SqlSessionTemplate batchSqlSession(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
     }
 
     @Primary

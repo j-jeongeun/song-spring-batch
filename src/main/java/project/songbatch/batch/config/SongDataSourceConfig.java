@@ -3,9 +3,7 @@ package project.songbatch.batch.config;
 import com.zaxxer.hikari.HikariDataSource;
 import java.io.IOException;
 import javax.sql.DataSource;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -44,11 +42,6 @@ public class SongDataSourceConfig {
         factoryBean.setConfigLocation(
             applicationContext.getResource("classpath:mybatis-config.xml"));
         return factoryBean;
-    }
-
-    @Bean
-    public SqlSessionTemplate songSqlSession(SqlSessionFactory sqlSessionFactory) {
-        return new SqlSessionTemplate(sqlSessionFactory);
     }
 
     @Bean
