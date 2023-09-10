@@ -30,3 +30,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+bootJar{
+	archivesBaseName = 'customBatch'
+	archiveFileName = 'customBatch.jar'
+}
