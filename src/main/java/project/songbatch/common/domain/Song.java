@@ -1,5 +1,6 @@
 package project.songbatch.common.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +12,11 @@ import project.songbatch.common.enums.BrandType;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Song {
-
     private Long id;
     private String title;
     private String singer;
     private long no;
     private BrandType brand;
-
-    public Song(BrandType brand, long no, String title, String singer) {
-        this.brand = brand;
-        this.no = no;
-        this.title = title;
-        this.singer = singer;
-    }
 }

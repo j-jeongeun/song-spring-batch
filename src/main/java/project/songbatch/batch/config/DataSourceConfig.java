@@ -5,7 +5,6 @@ import java.io.IOException;
 import javax.sql.DataSource;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
@@ -15,18 +14,17 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 @Configuration
-@MapperScan(basePackages = "project.songbatch", sqlSessionFactoryRef = "songSqlSessionFactory")
-public class SongDataSourceConfig {
+@MapperScan(basePackages = "project.songbatch")
+public class DataSourceConfig {
 
     private final ApplicationContext applicationContext;
-    private final String SONG_DATA_SOURCE = "songDataSource";
 
-    public SongDataSourceConfig(ApplicationContext applicationContext) {
+    public DataSourceConfig(ApplicationContext applicationContext) {
         this.applicationContext = applicationContext;
     }
 
-    @Bean(SONG_DATA_SOURCE)
-    @ConfigurationProperties(prefix = "spring.song-db.datasource.hikari")
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource.hikari")
     public DataSource songDataSource() {
         return DataSourceBuilder.create()
             .type(HikariDataSource.class)
@@ -45,7 +43,7 @@ public class SongDataSourceConfig {
     }
 
     @Bean
-    public DataSourceTransactionManager songTransactionManager(@Qualifier(SONG_DATA_SOURCE) DataSource dataSource) {
+    public DataSourceTransactionManager songTransactionManager(DataSource dataSource) {
         return new DataSourceTransactionManager(dataSource);
     }
 

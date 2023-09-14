@@ -4,12 +4,12 @@
 
     <select id="findBySongId" parameterType="project.songbatch.common.domain.Song" resultType="project.songbatch.common.domain.Song">
         SELECT
-        id,
-        title,
-        singer,
-        song_no,
-        brand,
-        update_date
+            id,
+            title,
+            singer,
+            song_no,
+            brand,
+            update_date
         FROM song
         WHERE brand = #{brand}
             AND song_no = #{no}

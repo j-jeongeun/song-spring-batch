@@ -20,8 +20,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-batch'
 	implementation 'org.springframework:spring-web'
 	implementation 'org.projectlombok:lombok:1.18.26'
-	implementation 'com.googlecode.json-simple:json-simple:1.1.1'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2' // jackson library
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

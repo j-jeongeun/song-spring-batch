@@ -1,6 +1,5 @@
 package project.songbatch.song.service;
 
-import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import project.songbatch.common.domain.Song;
@@ -12,12 +11,10 @@ public class SongService {
 
     private final SongRepository songRepository;
 
-    public Optional<Song> findBySongId(Song song) {
-        return songRepository.findBySongId(song);
-    }
-
     public void create(Song song) {
-        songRepository.create(song);
+        if (songRepository.findBySongId(song).isEmpty()) {
+            songRepository.create(song);
+        }
     }
 
 }
